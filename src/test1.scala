@@ -47,8 +47,8 @@ class Node(port: Int, neighbours: List[Address], directory: String) extends Runn
   }
 
   def sendFile(path: String): Unit = {
-    val lines = Source.fromFile(directory + "" + path).getLines
     for (elem <- neighbours) {
+      val lines = Source.fromFile(directory + "" + path).getLines
       val peer = new Socket(InetAddress.getByName(elem.ip), elem.port)
       val printStream = new PrintStream(peer.getOutputStream)
 
